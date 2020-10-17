@@ -1,7 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { testCycle } from "./state/test/action";
 
 function App() {
+  const dispatch = useDispatch();
+
+  dispatch(testCycle("terst"));
+
   return (
     <Router>
       <Switch>
