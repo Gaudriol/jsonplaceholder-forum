@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { PostItem } from "../components/PostItem";
 
 import { readPosts } from "../state/posts/action";
 import { postsSelector } from "../state/posts/selector";
@@ -25,6 +26,15 @@ export const Posts = () => {
     }
   }, [dispatch]);
 
+  const getUserProp = useCallback(
+    (userId) => {
+      const user = users.find(({ id }) => {
+        return id === userId;
+      });
+      return user;
+    },
+    [users]
+  );
 
   if (!posts || !users) {
     return "loading...";
@@ -33,9 +43,7 @@ export const Posts = () => {
   return (
     <section>
       {posts.map(({ title, id, userId }) => (
-        <article key={id}>
-          <Link to={`/posts/${id}`}>{title}</Link>
-        </article>
+        <PostItem title={title} key={id} user={getUserProp(userId)} />
       ))}
     </section>
   );
