@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Posts } from "./pages/Posts";
-import { PostDetails } from "./pages/PostDetails";
+import { Posts, PostDetails, User } from "./pages";
 
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
           <PostDetails />
         </Route>
         <Route exact path="/users/:userId">
-          User
+          <User />
         </Route>
         <Route path="*">Not found</Route>
       </Switch>
