@@ -11,6 +11,7 @@ export const PostDetails = () => {
   const { postId } = useParams();
   const post = useSelector(postByIdSelector(postId));
   const user = useSelector(userByIdSelector(post?.userId));
+  const comments = useSelector(postCommentsSelector(postId));
 
   useEffect(() => {
     if (!post) {
@@ -24,6 +25,12 @@ export const PostDetails = () => {
     }
   }, [dispatch, user, post]);
 
+  useEffect(() => {
+    if (!comments) {
+      dispatch(getPostComments(postId));
+    }
+  }, [dispatch, comments, postId]);
+
   if (!post || !user) {
     return "loading...";
   }
@@ -31,10 +38,19 @@ export const PostDetails = () => {
   const { title, body } = post;
 
   return (
+      {comments ? (
     <section>
-      <h1>{title}</h1>
+          <h2>Comments</h2>
+          {comments.map(({ body, email, name, id }) => (
+            <article key={id}>
+              <p>{name}</p>
+              <p>by {email}</p>
       <p>{body}</p>
-      <Link to={`/users/${user.id}`}>{user.name}</Link>
+            </article>
+          ))}
     </section>
+      ) : (
+        "Loading comments..."
+      )}
   );
 };
