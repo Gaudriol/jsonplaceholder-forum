@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -15,6 +15,8 @@ import {
 
 import { PageTitle } from "../components/PageTitle";
 import { PostItem } from "../components/PostItem";
+import { Pagination } from "../components/Pagination";
+import { paginateData } from "../utils/paginateData";
 
 const PostsWrapper = styled("div")`
   margin-bottom: 32px;
@@ -22,6 +24,8 @@ const PostsWrapper = styled("div")`
 
 export const Posts = () => {
   const dispatch = useDispatch();
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const posts = useSelector(postsSelector);
   const users = useSelector(usersSelector);
@@ -64,10 +68,21 @@ export const Posts = () => {
         <header>
           <PageTitle>All posts</PageTitle>
         </header>
-      {posts.map(({ title, id, userId }) => (
-        <PostItem title={title} key={id} user={getUserProp(userId)} />
+        {paginatedPosts.map(({ title, id, body, userId }) => (
+          <PostItem
+            title={title}
+            body={body}
+            id={id}
+            key={id}
+            user={getUserProp(userId)}
+          />
         ))}
       </PostsWrapper>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </section>
   );
 };
