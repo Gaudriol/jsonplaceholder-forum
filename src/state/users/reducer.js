@@ -1,9 +1,12 @@
-export default function users(state = [], action) {
+export default function users(
+  state = { list: [], hasFullList: false },
+  action
+) {
   switch (action.type) {
     case "READ_USERS_SUCCESS":
-      return action.payload;
+      return { ...state, list: [...action.payload], hasFullList: true };
     case "GET_USER_SUCCESS":
-      return [...state, ...action.payload];
+      return { ...state, list: [...state.list, ...action.payload] };
     default:
       return state;
   }

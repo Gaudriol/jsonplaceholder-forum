@@ -1,4 +1,8 @@
-export const usersSelector = ({ users }) => (users.length ? users : null);
+export const usersSelector = ({ users: { list } }) =>
+  list.length ? list : null;
 
-export const userByIdSelector = (userId) => ({ users }) =>
-  users.length && users.find(({ id }) => String(id) === String(userId));
+export const hasFullListUsersSelector = ({ users: { hasFullList } }) =>
+  hasFullList;
+
+export const userByIdSelector = (userId) => ({ users: { list } }) =>
+  list.length && list.find(({ id }) => String(id) === String(userId));

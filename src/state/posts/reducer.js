@@ -1,11 +1,12 @@
-export default function posts(state = [], action) {
+export default function posts(
+  state = { list: [], hasFullList: false },
+  action
+) {
   switch (action.type) {
-    // case "READ_POSTS":
-    //   return { ...state, isFetching: true };
     case "READ_POSTS_SUCCESS":
-      return action.payload;
+      return { ...state, list: [...action.payload], hasFullList: true };
     case "GET_POST_SUCCESS":
-      return [...state, ...action.payload];
+      return { ...state, list: [...action.payload] };
     default:
       return state;
   }

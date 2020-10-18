@@ -4,27 +4,37 @@ import { Link } from "react-router-dom";
 import { PostItem } from "../components/PostItem";
 
 import { readPosts } from "../state/posts/action";
-import { postsSelector } from "../state/posts/selector";
+import {
+  postsSelector,
+  hasFullListPostsSelector,
+} from "../state/posts/selector";
 import { readUsers } from "../state/users/actions";
-import { usersSelector } from "../state/users/selectors";
+import {
+  usersSelector,
+  hasFullListUsersSelector,
+} from "../state/users/selectors";
 
 export const Posts = () => {
   const dispatch = useDispatch();
 
   const posts = useSelector(postsSelector);
   const users = useSelector(usersSelector);
+  const hasFullListPosts = useSelector(hasFullListPostsSelector);
+  const hasFullListUsers = useSelector(hasFullListUsersSelector);
+
+  const hasFullList = hasFullListPosts && hasFullListUsers;
 
   useEffect(() => {
-    if (!posts) {
+    if (!hasFullListPosts) {
       dispatch(readPosts());
     }
-  }, [dispatch]);
+  }, [dispatch, hasFullListPosts]);
 
   useEffect(() => {
-    if (!users) {
+    if (!hasFullListUsers) {
       dispatch(readUsers());
     }
-  }, [dispatch]);
+  }, [dispatch, hasFullListUsers]);
 
   const getUserProp = useCallback(
     (userId) => {
@@ -36,8 +46,8 @@ export const Posts = () => {
     [users]
   );
 
-  if (!posts || !users) {
-    return "loading...";
+  if (!hasFullList) {
+    return "Loading...";
   }
 
   return (
