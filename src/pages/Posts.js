@@ -14,7 +14,7 @@ export const Posts = () => {
   const users = useSelector(usersSelector);
 
   useEffect(() => {
-    if (posts) {
+    if (!posts) {
       dispatch(readPosts());
     }
   }, [dispatch]);
@@ -25,7 +25,8 @@ export const Posts = () => {
     }
   }, [dispatch]);
 
-  if (!posts) {
+
+  if (!posts || !users) {
     return "loading...";
   }
 
