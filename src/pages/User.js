@@ -6,8 +6,7 @@ import styled from "styled-components";
 import { getUser } from "../state/users/actions";
 import { userByIdSelector } from "../state/users/selectors";
 
-import { PageTitle } from "../components/PageTitle";
-import { Text } from "../components/Text";
+import { PageTitle, Text } from "../components";
 
 import mailIcon from "../icons/mail.svg";
 import locationIcon from "../icons/location.svg";

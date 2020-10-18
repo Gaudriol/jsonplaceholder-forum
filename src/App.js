@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Container } from "./components/Container";
-import { Topbar } from "./components/Topbar";
+import { Container, Topbar } from "./components";
 
 import { Posts, PostDetails, User } from "./pages";
 

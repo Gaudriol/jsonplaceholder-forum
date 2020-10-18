@@ -13,13 +13,11 @@ import {
   hasFullListUsersSelector,
 } from "../state/users/selectors";
 
-import { PageTitle } from "../components/PageTitle";
-import { PostItem } from "../components/PostItem";
-import { Pagination } from "../components/Pagination";
+import { PageTitle, PostItem, Pagination } from "../components";
 import { paginateData } from "../utils/paginateData";
 
 const PostsWrapper = styled("div")`
-  margin-bottom: 32px;
+  margin-bottom: 64px;
 `;
 
 export const Posts = () => {

@@ -10,8 +10,7 @@ import { postByIdSelector } from "../state/posts/selector";
 import { getUser } from "../state/users/actions";
 import { userByIdSelector } from "../state/users/selectors";
 
-import { AuthorLink } from "../components/AuthorLink";
-import { Text } from "../components/Text";
+import { AuthorLink, Text } from "../components";
 
 const MainTitle = styled("h2")`
   font-size: 1.3rem;
