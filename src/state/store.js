@@ -9,10 +9,12 @@ import test from "./test/reducer";
 import postsSaga from "./posts/saga";
 import posts from "./posts/reducer";
 
+import usersSaga from "./users/saga";
+import users from "./users/reducer";
 
-const reducers = { test, posts };
+const reducers = { test, posts, users };
 
-const sagas = [testSaga, postsSaga];
+const sagas = [testSaga, postsSaga, usersSaga];
 
 const reducer = combineReducers(reducers);
 
