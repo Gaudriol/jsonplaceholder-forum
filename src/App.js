@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  const dispatch = useDispatch();
+import { Posts } from "./pages/Posts";
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          Index with posts
+          <Posts />
         </Route>
         <Route exact path="/posts/:postId">
           Post
