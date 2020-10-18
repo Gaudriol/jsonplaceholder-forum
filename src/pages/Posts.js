@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { PostItem } from "../components/PostItem";
+import styled from "styled-components";
 
 import { readPosts } from "../state/posts/action";
 import {
@@ -13,6 +12,13 @@ import {
   usersSelector,
   hasFullListUsersSelector,
 } from "../state/users/selectors";
+
+import { PageTitle } from "../components/PageTitle";
+import { PostItem } from "../components/PostItem";
+
+const PostsWrapper = styled("div")`
+  margin-bottom: 32px;
+`;
 
 export const Posts = () => {
   const dispatch = useDispatch();
@@ -50,11 +56,18 @@ export const Posts = () => {
     return "Loading...";
   }
 
+  const [paginatedPosts, totalPages] = paginateData(posts, currentPage);
+
   return (
     <section>
+      <PostsWrapper>
+        <header>
+          <PageTitle>All posts</PageTitle>
+        </header>
       {posts.map(({ title, id, userId }) => (
         <PostItem title={title} key={id} user={getUserProp(userId)} />
-      ))}
+        ))}
+      </PostsWrapper>
     </section>
   );
 };

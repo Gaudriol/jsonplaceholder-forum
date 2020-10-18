@@ -1,10 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { AuthorLink } from "./AuthorLink";
 
-export const PostItem = ({ title, user }) => {
+import { StyledLink } from "./Link";
+import { TitleLink } from "./TitleLink";
+
+const Item = styled("article")`
+  &:not(:first-of-type) {
+    margin-top: 48px;
+  }
+`;
+
+const Content = styled("p")`
+  margin: 16px 0;
+`;
+
+export const PostItem = ({ title, user, body, id }) => {
   return (
-    <section>
-      <b>{title}</b> by <Link to={`/users/${user.id}`}>{user.name}</Link>
-    </section>
+    <Item>
+      <h3>
+        <TitleLink to={`/posts/${id}`}>{title}</TitleLink>
+      </h3>
+      <AuthorLink to={`/users/${user.id}`}>by {user.name}</AuthorLink>
+      <Content>{body}</Content>
+      <StyledLink to={`/posts/${id}`}>{">>>"} View comments</StyledLink>
+    </Item>
   );
 };
