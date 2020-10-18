@@ -6,9 +6,13 @@ import { all, fork } from "redux-saga/effects";
 import testSaga from "./test/saga";
 import test from "./test/reducer";
 
-const reducers = { test };
+import postsSaga from "./posts/saga";
+import posts from "./posts/reducer";
 
-const sagas = [testSaga];
+
+const reducers = { test, posts };
+
+const sagas = [testSaga, postsSaga];
 
 const reducer = combineReducers(reducers);
 
