@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { AuthorLink } from "./AuthorLink";
 
+import { AuthorLink } from "./AuthorLink";
 import { StyledLink } from "./Link";
 import { TitleLink } from "./TitleLink";
 
