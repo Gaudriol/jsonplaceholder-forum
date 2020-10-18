@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Posts } from "./pages/Posts";
+import { PostDetails } from "./pages/PostDetails";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Posts />
         </Route>
         <Route exact path="/posts/:postId">
-          Post
+          <PostDetails />
         </Route>
         <Route exact path="/users/:userId">
           User
